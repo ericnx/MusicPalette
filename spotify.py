@@ -1,8 +1,7 @@
-from pprint import pprint
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
-from flask import Flask, redirect, request, url_for, render_template
-import ct
+from flask import Flask, redirect, url_for, render_template
+import public.ct as ct
 import spotipy
 import os
 
@@ -22,7 +21,7 @@ def get_token():
     token = sp_oauth.get_cached_token()
     if not token or sp_oauth.is_token_expired(token):
         token = sp_oauth.refresh_access_token(token["refresh_token"])
-        
+
     return token["access_token"]
 
 @app.route("/")
@@ -42,20 +41,13 @@ def current_song():
     current_song = sp.current_user_playing_track()
 
     if current_song:
-        id = current_song["item"]["id"]
         name = current_song["item"]["name"]
         artists = ", ".join([artist["name"] for artist in current_song["item"]["artists"]])
         cover = current_song["item"]["album"]["images"][1]["url"]
 
-        current_song_info = {
-            "id": id,
-            "name": name,
-            "artists": artists,
-            "cover": cover
-        }
+        color_palette = ct.get_color_palette(cover)
 
-        color_palette = ct.get_color_palette(current_song_info["cover"])
-        return current_song_info
+        return render_template("index.html", name=name, artists=artists, cover=cover, color_palette=color_palette)
     else:
         return "No song is currently playing.\n"
 

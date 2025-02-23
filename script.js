@@ -1,10 +1,11 @@
 window.onload = function () {
+  const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=49aeaafc5641456da8fae84026eeb882&response_type=code&redirect_uri=http://localhost:3000&scope=streaming%20user-read-private%20user-library-read%%20user-read-playback";
   const cover = document.getElementById("song-cover");
   cover.src = "afd.jpg";
 
   // load the song cover
   cover.onload = function () {
-    console.log("loaded song cover")
+    console.log("loaded song cover");
     const ct = new ColorThief(); // ColorThief grabs the color palette of an image
     const numOfColors = 5;
     const palette = ct.getPalette(cover, numOfColors);
@@ -25,8 +26,8 @@ window.onload = function () {
     console.log(`Most dominant color is: RGB(${domColor})`);
 
     // if song cover fails to load
-    cover.onerror = function(){
-        alert("error: failed to load image")
-    }
+    cover.onerror = function () {
+      alert("error: failed to load image");
+    };
   };
 };
