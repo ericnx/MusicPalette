@@ -17,6 +17,7 @@ sp_oauth = SpotifyOAuth(client_id=SPOTIFY_CLIENT_ID, client_secret=SPOTIFY_CLIEN
 token = sp_oauth.get_access_token()
 access_token = token["access_token"]
 
+# automatically refreshes the access token when it expires
 def get_token():
     token = sp_oauth.get_cached_token()
     if not token or sp_oauth.is_token_expired(token):
@@ -31,7 +32,7 @@ def login():
         auth_url = sp_oauth.get_authorize_url()
         return redirect(auth_url)
     
-    return redirect(url_for("current_song", ac_token=access_token))
+    return redirect(url_for("current_song"))
 
 @app.route("/current_song")
 def current_song():
