@@ -2,7 +2,7 @@
 
 Gets a 5-color palette from the song cover and displays it on a webpage along with the song's name and artist(s).
 
-![The Knowing](theknow.jpg)
+![The Knowing](theknowing.jpg)
 ![Always](always.jpg)
 
 ### Credits
