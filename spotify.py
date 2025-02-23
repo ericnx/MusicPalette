@@ -1,7 +1,7 @@
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
 from flask import Flask, redirect, url_for, render_template
-import public.ct as ct
+import ct
 import spotipy
 import os
 
