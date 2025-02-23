@@ -1,7 +1,8 @@
 from pprint import pprint
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
-from flask import Flask, redirect, request, url_for
+from flask import Flask, redirect, request, url_for, render_template
+import ct
 import spotipy
 import os
 
@@ -17,40 +18,43 @@ sp_oauth = SpotifyOAuth(client_id=SPOTIFY_CLIENT_ID, client_secret=SPOTIFY_CLIEN
 token = sp_oauth.get_access_token()
 access_token = token["access_token"]
 
+def get_token():
+    token = sp_oauth.get_cached_token()
+    if not token or sp_oauth.is_token_expired(token):
+        token = sp_oauth.refresh_access_token(token["refresh_token"])
+        
+    return token["access_token"]
+
 @app.route("/")
 def login():
-    print(sp_oauth.get_cached_token())    
+    token = sp_oauth.get_cached_token()
+    if not token:
+        auth_url = sp_oauth.get_authorize_url()
+        return redirect(auth_url)
+    
     return redirect(url_for("current_song", ac_token=access_token))
-
-# @app.route("/callback")
-# def callback():
-#     code = request.args.get("code")
-#     cached_token = sp_oauth.get_access_token(code)
-#     return redirect("/current_song")
 
 @app.route("/current_song")
 def current_song():
-    access_token = request.args.get("ac_token")
+    access_token = get_token()
     # use access token to the current song
     sp = spotipy.Spotify(auth=access_token)
     current_song = sp.current_user_playing_track()
 
     if current_song:
-        # get the song id
-        song_id = current_song["item"]["id"]
-        # get the song name
-        song_name = current_song["item"]["name"]
-        # get the song's artists
+        id = current_song["item"]["id"]
+        name = current_song["item"]["name"]
         artists = ", ".join([artist["name"] for artist in current_song["item"]["artists"]])
-        # get the song cover
-        song_cover = current_song["item"]["album"]["images"][1]["url"]
+        cover = current_song["item"]["album"]["images"][1]["url"]
 
         current_song_info = {
-            "id": song_id,
-            "name": song_name,
+            "id": id,
+            "name": name,
             "artists": artists,
-            "images": song_cover
+            "cover": cover
         }
+
+        color_palette = ct.get_color_palette(current_song_info["cover"])
         return current_song_info
     else:
         return "No song is currently playing.\n"
