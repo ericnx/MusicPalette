@@ -13,10 +13,6 @@ body{
     margin-bottom: 10px;
 }
 
-#song-canvas{
-    display: none;
-}
-
 h2{
     color: rgb(0, 0, 0);
     margin: 10px;
