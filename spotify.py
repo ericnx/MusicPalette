@@ -37,7 +37,7 @@ def login():
 @app.route("/current_song")
 def current_song():
     access_token = get_token()
-    # use access token to the current song
+    # use access token get to the current song
     sp = spotipy.Spotify(auth=access_token)
     current_song = sp.current_user_playing_track()
 
