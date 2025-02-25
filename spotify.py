@@ -52,7 +52,9 @@ def current_song():
 
         return render_template("index.html", name=name, artists=artists, cover=cover, color_palette=color_palette)
     else:
-        return "No song is currently playing.\n"
+        cover = "https://images.squarespace-cdn.com/content/v1/58b451af03596efb0e7d5f95/1573658559239-QS8M0JG5RJXW4ARFZJXB/white-square-border-png-4.png"
+        color_palette = ct.get_color_palette(cover)
+        return render_template("index.html", name="No song is currently playing.", cover=cover, color_palette=color_palette)
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000)
