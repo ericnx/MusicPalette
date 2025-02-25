@@ -3,9 +3,9 @@
 Gets a 5-color palette from the song cover and displays it on a webpage along with the song's name and artist(s).
 
 <p float="left">
-  <img src="examples/theknowing.jpg" alt="The Knowing" width="265" height=width/>
-  <img src="examples/always.jpg" alt="Always" width="265" height=width/>
-  <img src="examples/youandi.jpg" alt="You and I" width="265" height=width/>
+  <img src="images/theknowing.jpg" alt="The Knowing" width="265" height=width/>
+  <img src="images/always.jpg" alt="Always" width="265" height=width/>
+  <img src="images/youandi.jpg" alt="You and I" width="265" height=width/>
 </p>
 
 ### Credits
