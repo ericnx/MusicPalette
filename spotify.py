@@ -47,7 +47,7 @@ def current_song():
         if len(current_song["item"]["album"]["images"]) != 0:
             cover = current_song["item"]["album"]["images"][1]["url"]
         else:
-            cover = "https://raw.githubusercontent.com/ericnx/MusicPalette/main/examples/localfile.png"
+            cover = "https://raw.githubusercontent.com/ericnx/MusicPalette/main/images/localfile.png"
         color_palette = ct.get_color_palette(cover)
 
         return render_template("index.html", name=name, artists=artists, cover=cover, color_palette=color_palette)
