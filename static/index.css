@@ -6,26 +6,26 @@ body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#song-cover{
+#cover{
     height: 300px;
     width: 300px;
     margin-top: 50px;
     margin-bottom: 10px;
 }
 
-h2{
+#name{
     color: rgb(0, 0, 0);
     margin: 10px;
     margin-bottom: 0px;
 }
 
-h3{
+#artists{
     color: rgb(128, 128, 128);
     margin: 0px;
     margin-bottom: 25px;
 }
 
-#colors{
+#palette{
     display: flex;
 }
 
