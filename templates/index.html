@@ -5,16 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MusicPalette</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <script src="static/script.js"></script>
 </head>
 <body>
-    <img id='song-cover' src="{{ cover }}">
-    <h2>{{ name }}</h2>
-    <h3>{{ artists }}</h3>
-    <div id="colors">
-        {% for i in range(5) %}
-            <div id="color-{{ i + 1 }}" class="color-squares" style="background-color: rgb({{ color_palette[i][0] }}, {{ color_palette[i][1] }}, {{ color_palette[i][2] }});">
-            </div>
-        {% endfor %}
-    </div>
+    <img id="cover">
+    <h2 id ="name"></h2>
+    <h3 id="artists"></h3>
+    <div id="palette"></div>
 </body>
 </html>
